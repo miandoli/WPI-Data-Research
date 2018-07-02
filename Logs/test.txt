@@ -1,0 +1,6 @@
+1_1: 1
+1_2: 3
+2_1: 2
+2_2: 4
+Comfort level: 4
+Total time: 50.78

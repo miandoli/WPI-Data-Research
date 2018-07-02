@@ -1,0 +1,13 @@
+.ytplayer {
+    pointer-events: none;
+}
+button {
+    background-color: lightgray;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 35px 10px 35px;
+}
+p {
+    font-size: 125%;
+}

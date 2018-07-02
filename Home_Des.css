@@ -1,0 +1,26 @@
+h1 {
+    font-size: 250%;
+    margin-left: 10px;
+}
+p {
+    font-size: 150%;
+    line-height: 1.5;
+    margin-top: 35px;
+    margin-left: 15px;
+    width: 1000px;
+}
+div {
+    font-size: 150%;
+    margin-top: 35px;
+    margin-left: 15px;
+}
+input {
+    font-size: 30px;
+}
+button {
+    background-color: lightgray;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px 35px 10px 35px;
+}
