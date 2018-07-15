@@ -1,69 +1,26 @@
-var vidTag, eventTag;
-function initAPI(video, evTag) {
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/player_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-    vidTag = video;
-    eventTag = evTag;
+var myVid;
+function evListener(id) {
+    myVid = document.getElementById(id);
+    myVid.addEventListener("ended", endEvent, false);
 }
 
-var player;
-function onYouTubePlayerAPIReady() {
-    player = new YT.Player('ytplayer', {
-        height: '480',
-        width: '853',
-        videoId: vidTag,
-        playerVars: {
-            controls: 0,
-            disablekb: 1,
-            showinfo: 0
-        },
-        events: {
-            onStateChange: eventTag
-        }
-    });
+function endEvent(e) {
+    if (e.target.id == "ariely") {
+        window.location = "Ariely_Questions.html";
+    } else if (e.target.id == "pinker") {
+        window.location = "Pinker_Questions.html";
+    } else if (e.target.id == "krznaric") {
+        window.location = "Krznaric_Questions.html";
+    }
 }
 
 function startVideo() {
-    player.playVideo();
-    var sound = new Audio("ding.mp3");
+    myVid.play();
+    var sound = new Audio("Resources\\ding.mp3");
     sound.play();
     var elem = document.getElementById("btnStart");
     elem.parentNode.removeChild(elem);
     document.getElementById("lblDescr").innerHTML = "";
-}
-
-function onPlayerStateChange1(event) {
-    if (event.data == 0) {
-        window.location = "Questions_1.html";
-    }
-}
-
-function onPlayerStateChange2(event) {
-    if (event.data == 0) {
-        window.location = "Questions_2.html";
-    }
-}
-
-function vid1() {
-    var name = document.getElementById("txtName").value;
-    if (name != "") {
-        localStorage.setItem("name", name);
-        var time = Date.now() / 1000;
-        localStorage.setItem("start", time);
-        window.location = "Video_1.html";
-    } else {
-        window.alert("Please enter a name!");
-    }
-}
-
-function vid2() {
-    window.location = "Video_2.html";
-}
-
-function endQ() {
-    window.location = "Questions_End.html";
 }
 
 function saveQ(index, numQuestions, nxtPage = 0) {
@@ -77,6 +34,30 @@ function saveQ(index, numQuestions, nxtPage = 0) {
     if (nxtPage) {
         nxtPage();
     }
+}
+
+function vid1() {
+    var name = document.getElementById("txtName").value;
+    if (name != "") {
+        localStorage.setItem("name", name);
+        var time = Date.now() / 1000;
+        localStorage.setItem("start", time);
+        window.location = "Ariely_Video.html";
+    } else {
+        window.alert("Please enter a name!");
+    }
+}
+
+function vid2() {
+    window.location = "Pinker_Video.html";
+}
+
+function vid3() {
+    window.location = "Krznaric_Video.html";
+}
+
+function endQ() {
+    window.location = "Questions_End.html";
 }
 
 function multChoice(name, num) {
