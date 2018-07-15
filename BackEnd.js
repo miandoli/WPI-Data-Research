@@ -57,7 +57,7 @@ function vid3() {
 }
 
 function endQ() {
-    window.location = "Questions_End.html";
+    window.location = "Comfort_Questions.html";
 }
 
 function multChoice(name, num) {
