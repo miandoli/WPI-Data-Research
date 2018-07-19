@@ -23,4 +23,5 @@ button {
     text-align: center;
     font-size: 25px;
     padding: 10px 35px 10px 35px;
+    cursor: pointer;
 }

@@ -12,13 +12,43 @@
         Please answer all of the following questions.
     </p>
     <h2>
-        Question 1: How comfortable did you feel?
+        Rate your whole body thermal sensation.
     </h2>
-    <div>
-        <input type="radio" name="comf" id="comf_1">1</input><br>
-        <input type="radio" name="comf" id="comf_2">2</input><br>
-        <input type="radio" name="comf" id="comf_3">3</input><br>
-        <input type="radio" name="comf" id="comf_4">4</input>
+    <div class="grad">
+        <div class="des">Cold (-3)</div>
+        <div class="des">Neutral (0)</div>
+        <div class="des">Hot (3)</div>
+    </div>
+    <div class="out">
+        <div class="in">-3</div>
+        <div class="in">-2</div>
+        <div class="in">-1</div>
+        <div class="in">0</div>
+        <div class="in">1</div>
+        <div class="in">2</div>
+        <div class="in">3</div>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="-3" max="3" value="0" class= "slider" id="temp">
+    </div>
+    <h2>
+        Rate your thermal body comfort.
+    </h2>
+    <div class="gradcon">
+        <div class="con">Very uncomfortable</div>
+        <div class="con">Very comfortable</div>
+    </div>
+    <div class="out">
+        <div class="in">-3</div>
+        <div class="in">-2</div>
+        <div class="in">-1</div>
+        <div class="in">0</div>
+        <div class="in">1</div>
+        <div class="in">2</div>
+        <div class="in">3</div>
+    </div>
+    <div class="slidecontainer">
+        <input type="range" min="-3" max="3" value="0" class= "slider" id="comf">
     </div>
     <div>
         <button id="btnSubmit" onClick="determineNxt()">Submit</button>
