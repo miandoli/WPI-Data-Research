@@ -54,6 +54,11 @@ function saveQ(numQuestions, nxtPage = 0) {
         var value = multChoice(elName, 4);
         localStorage.setItem(name, value);
     }
+
+    var start = localStorage.getItem("start");
+    var time = Date.now() / 1000;
+    localStorage.setItem("quiz" + index, time - start);
+
     if (nxtPage) {
         nxtPage();
     }
@@ -118,6 +123,11 @@ function determineNxt() {
     var comf = document.getElementById("comf").value;
     var txt = "Survey " + index + "(Temp: " + temp + ", Comf: " + comf + ")";
     localStorage.setItem("survey" + index, txt);
+
+    var start = localStorage.getItem("start");
+    var time = Date.now() / 1000;
+    localStorage.setItem("surveyTime" + index, time - start);
+
     if (localStorage.getItem("vidIndex") <= 3) {
         window.location = "Timer.html";
     } else {
@@ -175,9 +185,13 @@ function saveAll(num) {
             var snippet = localStorage.getItem("" + i + "_" + j);
             data += "" + i + "_" + j + ": " + snippet + "\r\n";
         }
+        var quizTime = parseFloat(localStorage.getItem("quiz" + i));
+        data += "Quiz " + i + " finish time: " + quizTime.toFixed(2) + "s\r\n";
 
         var txt = localStorage.getItem("survey" + i);
         data += txt + "\r\n";
+        var surveyTime = parseFloat(localStorage.getItem("surveyTime" + i));
+        data += "Survey " + i + " finish time: " + surveyTime.toFixed(2) + "s\r\n";
     }
 
     var total = (Date.now() / 1000) - localStorage.getItem("start");
