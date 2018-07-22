@@ -1,7 +1,23 @@
+body {
+    margin: 25px;
+}
+div {
+    margin: 10px;
+}
+h1 {
+    font-size: 225%;
+}
 h2 {
-    font-size: 125%;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    font-size: 150%;
+    color: rgb(50, 50, 50);
+    margin: 10px;
+}
+h3 {
+    color: rgb(75, 75, 75);
+    margin: 10px;
+}
+input {
+    margin: 5px 10px;
 }
 p {
     font-size: 125%;
@@ -19,40 +35,30 @@ button {
     margin-top: 10px;
     cursor: pointer;
 }
-.grad {
-    background: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 0, 0, 0.5));
+.gradTemp, .gradCon, .gradAcc, .out {
     width: 50%;
-    padding: 0px;
-    margin-left: 15px;
-    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.gradTemp {
+    background: linear-gradient(to right, rgba(0, 0, 255, 0.5), rgba(255, 0, 0, 0.5));
+}
+.gradCon {
+    background: linear-gradient(to right, rgba(255, 0, 0, 0.5), white, rgba(255, 165, 0, 0.5));
+}
+.gradAcc {
+    background: linear-gradient(to right, rgba(127, 127, 127, 0.5), white, rgba(255, 255, 0, 0.5));
 }
 .des {
-    display: inline-block;
-    text-align: center;
-    width: 30%;
-    margin: 5px;
-}
-.gradcon {
-    background: linear-gradient(to right, rgba(255, 0, 0, 0.5), white, rgba(255, 165, 0, 0.5));
-    width: 50%;
-    padding: 0px;
-    text-align: center;
-    margin-left: 15px;
-    margin-bottom: 5px;
-}
-.con {
-    display: inline-block;
-    width: 40%;
-    margin: 5px;
+    margin: 10px 25px;
+    font-weight: bold;
+    font-size: 125%;
 }
 .in {
-    display: inline-block;
-    width: 13%;
-}
-.out {
-    width: 60%;
-    margin-left: 15px;
-    margin-bottom: 0px;
+    margin: 5px;
+    text-align: center;
+    width: 5%;
 }
 .slidecontainer {
     width: 50%;
@@ -64,6 +70,7 @@ button {
     width: 100%;
     height: 15px;
     border-radius: 5px;
+    margin-left: -1px;
     background: #d3d3d3;
     outline: none;
     opacity: 0.7;

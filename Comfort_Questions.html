@@ -5,50 +5,531 @@
     <script src="BackEnd.js"></script>
 </head>
 <body>
-    <h1>
-        Thermal environment for whole body
-    </h1>
-    <p>
-        Please answer all of the following questions.
-    </p>
-    <h2>
-        Rate your whole body thermal sensation.
-    </h2>
-    <div class="grad">
-        <div class="des">Cold (-3)</div>
-        <div class="des">Neutral (0)</div>
-        <div class="des">Hot (3)</div>
+    <div id="body">
+        <h1>
+            Thermal environment for whole body
+        </h1>
+        <h2>
+            Rate your whole body thermal sensation
+        </h2>
+        <div>
+            <div class="gradTemp">
+                <div class="des">Cold (-3)</div>
+                <div class="des">Neutral (0)</div>
+                <div class="des">Hot (3)</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="temp_bod">
+            </div>
+        </div>
+        <h2>
+            Rate your thermal body comfort (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradCon">
+                <div class="des">Very uncomfortable</div>
+                <div class="des">Very comfortable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="comf_bod">
+            </div>
+        </div>
+        <h2>
+            Rate your acceptance of thermal environment of your body (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradAcc">
+                <div class="des">Clearly unacceptable</div>
+                <div class="des">Clearly acceptable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="acc_bod">
+            </div>
+        </div>
     </div>
-    <div class="out">
-        <div class="in">-3</div>
-        <div class="in">-2</div>
-        <div class="in">-1</div>
-        <div class="in">0</div>
-        <div class="in">1</div>
-        <div class="in">2</div>
-        <div class="in">3</div>
+    <div id="head">
+        <h1>
+            Thermal environment for your head
+        </h1>
+        <h2>
+            Rate your local thermal sensation for your head
+        </h2>
+        <div>
+            <div class="gradTemp">
+                <div class="des">Cold (-3)</div>
+                <div class="des">Neutral (0)</div>
+                <div class="des">Hot (3)</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="temp_head">
+            </div>
+        </div>
+        <h2>
+            Rate your thermal comfort for your head (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradCon">
+                <div class="des">Very uncomfortable</div>
+                <div class="des">Very comfortable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="comf_head">
+            </div>
+        </div>
+        <h2>
+            Rate the acceptance of thermal environment at your head (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradAcc">
+                <div class="des">Clearly unacceptable</div>
+                <div class="des">Clearly acceptable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="acc_head">
+            </div>
+        </div>
     </div>
-    <div class="slidecontainer">
-        <input type="range" min="-3" max="3" value="0" class= "slider" id="temp">
+    <div id="hands">
+        <h1>
+            Thermal environment for your hands
+        </h1>
+        <h2>
+            Rate your local thermal sensation for your hands
+        </h2>
+        <div>
+            <div class="gradTemp">
+                <div class="des">Cold (-3)</div>
+                <div class="des">Neutral (0)</div>
+                <div class="des">Hot (3)</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="temp_hands">
+            </div>
+        </div>
+        <h2>
+            Rate your thermal comfort for your hands (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradCon">
+                <div class="des">Very uncomfortable</div>
+                <div class="des">Very comfortable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="comf_hands">
+            </div>
+        </div>
+        <h2>
+            Rate the acceptance of thermal environment at your hands (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradAcc">
+                <div class="des">Clearly unacceptable</div>
+                <div class="des">Clearly acceptable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="acc_hands">
+            </div>
+        </div>
     </div>
-    <h2>
-        Rate your thermal body comfort (select a non-zero value).
-    </h2>
-    <div class="gradcon">
-        <div class="con">Very uncomfortable</div>
-        <div class="con">Very comfortable</div>
+    <div id="feet">
+        <h1>
+            Thermal environment for your feet
+        </h1>
+        <h2>
+            Rate your local thermal sensation for your feet
+        </h2>
+        <div>
+            <div class="gradTemp">
+                <div class="des">Cold (-3)</div>
+                <div class="des">Neutral (0)</div>
+                <div class="des">Hot (3)</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="temp_feet">
+            </div>
+        </div>
+        <h2>
+            Rate your thermal comfort for your feet (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradCon">
+                <div class="des">Very uncomfortable</div>
+                <div class="des">Very comfortable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="comf_feet">
+            </div>
+        </div>
+        <h2>
+            Rate the acceptance of thermal environment at your feet (select a non-zero value)
+        </h2>
+        <div>
+            <div class="gradAcc">
+                <div class="des">Clearly unacceptable</div>
+                <div class="des">Clearly acceptable</div>
+            </div>
+            <div class="out">
+                <div class="in">-3</div>
+                <div class="in">-2</div>
+                <div class="in">-1</div>
+                <div class="in">0</div>
+                <div class="in">1</div>
+                <div class="in">2</div>
+                <div class="in">3</div>
+            </div>
+            <div class="slidecontainer">
+                <input type="range" min="-3" max="3" value="0" class= "slider" id="acc_feet">
+            </div>
+        </div>
     </div>
-    <div class="out">
-        <div class="in">-3</div>
-        <div class="in">-2</div>
-        <div class="in">-1</div>
-        <div class="in">0</div>
-        <div class="in">1</div>
-        <div class="in">2</div>
-        <div class="in">3</div>
-    </div>
-    <div class="slidecontainer">
-        <input type="range" min="-3" max="3" value="0" class= "slider" id="comf">
+    <div>
+        <h2>
+            Would you prefer to be:
+        </h2>
+        <div>
+            <input type="radio" name="prefer" id="prefer_1">
+                Cooler
+            </input><br>
+            <input type="radio" name="prefer" id="prefer_2">
+                No Change
+            </input><br>
+            <input type="radio" name="prefer" id="prefer_3">
+                Warmer
+            </input>
+        </div>
+        <h2>
+            The air is...
+        </h2>
+        <div class="gradAcc">
+            <div class="des">Stuffy</div>
+            <div class="des">Clear</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="air_stuff">
+        </div>
+        <h2>
+            Right now, do you feel...?
+        </h2>
+        <h3>
+            Odor
+        </h3>
+        <div>
+            <input type="radio" name="odor" id="odor_1">
+                No
+            </input><br>
+            <input type="radio" name="odor" id="odor_2">
+                Light
+            </input><br>
+            <input type="radio" name="odor" id="odor_3">
+                Moderate
+            </input><br>
+            <input type="radio" name="odor" id="odor_4">
+                Strong
+            </input><br>
+            <input type="radio" name="odor" id="odor_5">
+                Very Strong
+            </input><br>
+            <input type="radio" name="odor" id="odor_6">
+                Overwhelming
+            </input>
+        </div>
+        <h2>
+            Rate your acceptance of indoor air quality (select a non-zero value)
+        </h2>
+        <div class="gradAcc">
+            <div class="des">Clearly unacceptable</div>
+            <div class="des">Clearly acceptable</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="air_qual">
+        </div>
+        <h2>
+            Right now, do you feel...?
+        </h2>
+        <h3>
+            <b>Eyes</b> irritation
+        </h3>
+        <div>
+            <input type="radio" name="eyes" id="eyes_1">
+                No
+            </input><br>
+            <input type="radio" name="eyes" id="eyes_2">
+                Light
+            </input><br>
+            <input type="radio" name="eyes" id="eyes_3">
+                Moderate
+            </input><br>
+            <input type="radio" name="eyes" id="eyes_4">
+                Strong
+            </input><br>
+            <input type="radio" name="eyes" id="eyes_5">
+                Very Strong
+            </input><br>
+            <input type="radio" name="eyes" id="eyes_6">
+                Overwhelming
+            </input>
+        </div>
+        <h3>
+            <b>Nose</b> irritation
+        </h3>
+        <div>
+            <input type="radio" name="nose" id="nose_1">
+                No
+            </input><br>
+            <input type="radio" name="nose" id="nose_2">
+                Light
+            </input><br>
+            <input type="radio" name="nose" id="nose_3">
+                Moderate
+            </input><br>
+            <input type="radio" name="nose" id="nose_4">
+                Strong
+            </input><br>
+            <input type="radio" name="nose" id="nose_5">
+                Very Strong
+            </input><br>
+            <input type="radio" name="nose" id="nose_6">
+                Overwhelming
+            </input>
+        </div>
+        <h3>
+            <b>Throat</b> irritation
+        </h3>
+        <div>
+            <input type="radio" name="throat" id="throat_1">
+                No
+            </input><br>
+            <input type="radio" name="throat" id="throat_2">
+                Light
+            </input><br>
+            <input type="radio" name="throat" id="throat_3">
+                Moderate
+            </input><br>
+            <input type="radio" name="throat" id="throat_4">
+                Strong
+            </input><br>
+            <input type="radio" name="throat" id="throat_5">
+                Very Strong
+            </input><br>
+            <input type="radio" name="throat" id="throat_6">
+                Overwhelming
+            </input>
+        </div>
+        <h2>
+            Rate your acceptance of the acoustics in this room (select a non-zero value)
+        </h2>
+        <div class="gradAcc">
+            <div class="des">Clearly unacceptable</div>
+            <div class="des">Clearly acceptable</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="acous">
+        </div>
+        <h2>
+            Rate your acceptance of the lighting in this room (select a non-zero value)
+        </h2>
+        <div class="gradAcc">
+            <div class="des">Clearly unacceptable</div>
+            <div class="des">Clearly acceptable</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="light">
+        </div>
+        <h2>
+            Right now, how do you feel?
+        </h2>
+        <h3>
+            How sleepy/alert do you feel?
+        </h3>
+        <div class="gradAcc">
+            <div class="des">Sleepy</div>
+            <div class="des">Alert</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="alert">
+        </div>
+        <h3>
+            How easy/difficult is it to concentrate?
+        </h3>
+        <div class="gradAcc">
+            <div class="des">Easy</div>
+            <div class="des">Difficult</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="concen">
+        </div>
+        <h3>
+            How productive do you feel?
+        </h3>
+        <div class="gradAcc">
+            <div class="des">Not very productive</div>
+            <div class="des">Very productive</div>
+        </div>
+        <div class="out">
+            <div class="in">-3</div>
+            <div class="in">-2</div>
+            <div class="in">-1</div>
+            <div class="in">0</div>
+            <div class="in">1</div>
+            <div class="in">2</div>
+            <div class="in">3</div>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="-3" max="3" value="0" class= "slider" id="produc">
+        </div>
     </div>
     <div>
         <button id="btnSubmit" onClick="determineNxt()">Submit</button>

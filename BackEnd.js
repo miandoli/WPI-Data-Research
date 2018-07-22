@@ -10,6 +10,21 @@ function randomize() {
     localStorage.setItem("vidIndex", 1);
 }
 
+function strTime() {
+    return new Date().toLocaleString();
+}
+
+function multChoice(name, num) {
+    var value = "no answer";
+    for (var i = 1; i <= num; i++) {
+        var el = document.getElementById(name + "_" + i);
+        if (el.checked) {
+            value = i;
+        }
+    }
+    return value;
+}
+
 var myVid;
 function evListener(id) {
     myVid = document.getElementById(id);
@@ -18,9 +33,7 @@ function evListener(id) {
 
 function endEvent(e) {
     var index = localStorage.getItem("vidIndex");
-    var start = localStorage.getItem("start");
-    var time = Date.now() / 1000;
-    localStorage.setItem("end" + index, time - start);
+    localStorage.setItem("end" + index, strTime());
 
     if (e.target.id == "ariely") {
         window.location = "Ariely_Questions.html";
@@ -40,9 +53,7 @@ function startVideo() {
     document.getElementById("lblDescr").innerHTML = "";
 
     var index = localStorage.getItem("vidIndex");
-    var start = localStorage.getItem("start");
-    var time = Date.now() / 1000;
-    localStorage.setItem("start" + index, time - start);
+    localStorage.setItem("start" + index, strTime());
 }
 
 function saveQ(numQuestions, nxtPage = 0) {
@@ -54,10 +65,7 @@ function saveQ(numQuestions, nxtPage = 0) {
         var value = multChoice(elName, 4);
         localStorage.setItem(name, value);
     }
-
-    var start = localStorage.getItem("start");
-    var time = Date.now() / 1000;
-    localStorage.setItem("quiz" + index, time - start);
+    localStorage.setItem("quiz" + index, strTime());
 
     if (nxtPage) {
         nxtPage();
@@ -69,8 +77,7 @@ function vid1() {
     var name = document.getElementById("txtName").value;
     if (name != "") {
         localStorage.setItem("name", name);
-        var time = Date.now() / 1000;
-        localStorage.setItem("start", time);
+        localStorage.setItem("start", strTime());
         window.location = localStorage.getItem("vid1");
     } else {
         window.alert("Please enter a name!");
@@ -119,31 +126,41 @@ function comfQ() {
 
 function determineNxt() {
     var index = localStorage.getItem("vidIndex") - 1;
-    var temp = document.getElementById("temp").value;
-    var comf = document.getElementById("comf").value;
-    var txt = "Survey " + index + "(Temp: " + temp + ", Comf: " + comf + ")";
-    localStorage.setItem("survey" + index, txt);
+    var txt = "Survey " + index + "\r\n";
 
-    var start = localStorage.getItem("start");
-    var time = Date.now() / 1000;
-    localStorage.setItem("surveyTime" + index, time - start);
+    var part = ["bod", "head", "hands", "feet"];
+    var type = ["temp", "comf", "acc"];
+
+    for (var i = 0; i < part.length; i++) {
+        for (var j = 0; j < type.length; j++) {
+            var curr = document.getElementById(type[j] + "_" + part[i]).value;
+            txt += "\t" + type[j] + "_" + part[i] + ": " + curr + "\r\n";
+        }
+    }
+
+    var prefer = multChoice("prefer", 3);
+    var airStuff = document.getElementById("air_stuff").value;
+    var odor = multChoice("odor", 6);
+    var airQual = document.getElementById("air_qual").value;
+    var eyes = multChoice("eyes", 6);
+    var nose = multChoice("nose", 6);
+    var throat = multChoice("throat", 6);
+    txt += "\tprefer: " + prefer + "\r\n\tair_stuff: " + airStuff + "\r\n\todor: " + odor + "\r\n\tair_qual: " + airQual + "\r\n\teyes: " + eyes + "\r\n\tnose: " + nose + "\r\n\tthroat: " + throat + "\r\n";
+
+    var categ = ["acous", "light", "alert", "concen", "produc"];
+    for (var i = 0; i < categ.length; i++) {
+        var curr = document.getElementById(categ[i]).value;
+        txt += "\t" + categ[i] + ": " + curr + "\r\n";
+    }
+
+    localStorage.setItem("survey" + index, txt);
+    localStorage.setItem("surveyTime" + index, strTime());
 
     if (localStorage.getItem("vidIndex") <= 3) {
         window.location = "Timer.html";
     } else {
         saveAll(3);
     }
-}
-
-function multChoice(name, num) {
-    var value = "no answer";
-    for (var i = 1; i <= num; i++) {
-        var el = document.getElementById(name + "_" + i);
-        if (el.checked) {
-            value = i;
-        }
-    }
-    return value;
 }
 
 function download(data, fileName) {
@@ -169,33 +186,34 @@ function saveAll(num) {
     var fileName = name + ".txt";
     var data = "";
 
+    data += "Start time: " + localStorage.getItem("start") + "\r\n";
+
     var vid1 = localStorage.getItem("vid1");
     var vid2 = localStorage.getItem("vid2");
     var vid3 = localStorage.getItem("vid3");
-    data += "Video order: " + vid1 + ", " + vid2 + ", " + vid3 + "\r\n";
+    data += "Video order: " + vid1 + ", " + vid2 + ", " + vid3 + "\r\n\r\n";
 
     for (var i = 1; i <= num; i++) {
-        var start = parseFloat(localStorage.getItem("start" + i));
-        data += "Video start: " + start.toFixed(2) + "s\r\n";
-        var end = parseFloat(localStorage.getItem("end" + i));
-        data += "Video end: " + end.toFixed(2) + "s\r\n";
+        var start = localStorage.getItem("start" + i);
+        data += "Video " + i + " start: " + start + "\r\n";
+        var end = localStorage.getItem("end" + i);
+        data += "Video " + i + " end: " + end + "\r\n";
 
         var len = localStorage.getItem("numQ" + i);
         for (var j = 1; j <= len; j++) {
             var snippet = localStorage.getItem("" + i + "_" + j);
-            data += "" + i + "_" + j + ": " + snippet + "\r\n";
+            data += "\t" + i + "_" + j + ": " + snippet + "\r\n";
         }
-        var quizTime = parseFloat(localStorage.getItem("quiz" + i));
-        data += "Quiz " + i + " finish time: " + quizTime.toFixed(2) + "s\r\n";
+        var quizTime = localStorage.getItem("quiz" + i);
+        data += "Quiz " + i + " finish time: " + quizTime + "\r\n";
 
         var txt = localStorage.getItem("survey" + i);
-        data += txt + "\r\n";
-        var surveyTime = parseFloat(localStorage.getItem("surveyTime" + i));
-        data += "Survey " + i + " finish time: " + surveyTime.toFixed(2) + "s\r\n";
+        data += txt;
+        var surveyTime = localStorage.getItem("surveyTime" + i);
+        data += "Survey " + i + " finish time: " + surveyTime + "\r\n\r\n";
     }
 
-    var total = (Date.now() / 1000) - localStorage.getItem("start");
-    data += "Total time: " + total.toFixed(2) + "s";
+    data += "Finish time: " + strTime();
 
     download(data, fileName);
 }
