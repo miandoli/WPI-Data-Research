@@ -85,7 +85,7 @@ function vid1() {
 }
 
 function setTimer() {
-    const length = 0.05; // Time for break (minutes)
+    const length = 10; // Time for break (minutes)
     var time = length * 60;
     var x = setInterval(function() {
         if (time == 0) {
@@ -107,7 +107,7 @@ function setTimer() {
 }
 
 function quizTimer() {
-    const length = 0.2; // Time for quiz (minutes)
+    const length = 5; // Time for quiz (minutes)
     var time = length * 60;
     var x = setInterval(function() {
         if (time == 0) {
