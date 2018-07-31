@@ -1,3 +1,9 @@
+// Parameters (in minutes)
+const QUIZ_LENGTH = 5;
+const SURVEY_LENGTH = 5;
+const SECTION_LENGTH = 21;
+
+// Randomizes order of videos shown
 function randomize() {
     var lst = ["Ariely_Video.html", "Pinker_Video.html", "Krznaric_Video.html"];
     var rnd1 = Math.floor(Math.random() * 3);
@@ -10,10 +16,12 @@ function randomize() {
     localStorage.setItem("vidIndex", 1);
 }
 
+// Gets the current time in standard date format i.e. 7/30/2018, 8:46:14 PM
 function strTime() {
     return new Date().toLocaleString();
 }
 
+// Calculates which answer was chosen for set of input elements
 function multChoice(name, num) {
     var value = "no answer";
     for (var i = 1; i <= num; i++) {
@@ -25,12 +33,14 @@ function multChoice(name, num) {
     return value;
 }
 
+// Adds an event listener to check when video ends
 var myVid;
 function evListener(id) {
     myVid = document.getElementById(id);
     myVid.addEventListener("ended", endEvent, false);
 }
 
+// Shows respective questions after video
 function endEvent(e) {
     var index = localStorage.getItem("vidIndex");
     localStorage.setItem("end" + index, strTime());
@@ -44,6 +54,7 @@ function endEvent(e) {
     }
 }
 
+// Starts the current video
 function startVideo() {
     myVid.play();
     var sound = new Audio("Resources\\ding.mp3");
@@ -56,6 +67,7 @@ function startVideo() {
     localStorage.setItem("start" + index, strTime());
 }
 
+// Saves the quiz questions
 function saveQ(numQuestions, nxtPage = 0) {
     var index = localStorage.getItem("vidIndex");
     localStorage.setItem("numQ" + index, numQuestions);
@@ -72,24 +84,32 @@ function saveQ(numQuestions, nxtPage = 0) {
     }
 }
 
+// Starts the first video
 function vid1() {
     randomize();
     var name = document.getElementById("txtName").value;
     if (name != "") {
         localStorage.setItem("name", name);
         localStorage.setItem("start", strTime());
+        localStorage.setItem("breakTimer", Date.now());
         window.location = localStorage.getItem("vid1");
     } else {
         window.alert("Please enter a name!");
     }
 }
 
+// Calculates and displays the break timer
 function setTimer() {
-    const length = 0.05; // Time for break (minutes)
-    var time = length * 60;
+    var elasped = (Date.now() - parseInt(localStorage.getItem("breakTimer")));
+    var time = SECTION_LENGTH * 60 - Math.floor(elasped / 1000);
+    if (time < 0) {
+        time = 0;
+    }
+
     var x = setInterval(function() {
-        if (time == 0) {
+        if (time <= 0) {
             var nxtVid = "vid" + localStorage.getItem("vidIndex");
+            localStorage.setItem("breakTimer", Date.now());
             window.location = localStorage.getItem(nxtVid);
         }
         var minutes = Math.floor(time / 60);
@@ -106,9 +126,9 @@ function setTimer() {
     }, 1000);
 }
 
+// Time limit for quiz
 function quizTimer() {
-    const length = 0.2; // Time for quiz (minutes)
-    var time = length * 60;
+    var time = QUIZ_LENGTH * 60;
     var x = setInterval(function() {
         if (time == 0) {
             saveQ(6, comfQ);
@@ -117,6 +137,18 @@ function quizTimer() {
     }, 1000);
 }
 
+// Time limit for survey
+function survTimer() {
+    var time = SURVEY_LENGTH * 60;
+    var x = setInterval(function() {
+        if (time == 0) {
+            determineNxt();
+        }
+        time += -1;
+    }, 1000);
+}
+
+// Displays survey questions
 function comfQ() {
     var index = localStorage.getItem("vidIndex");
     index++;
@@ -124,6 +156,7 @@ function comfQ() {
     window.location = "Comfort_Questions.html";
 }
 
+// Saves the survey questions and displays next video
 function determineNxt() {
     var index = localStorage.getItem("vidIndex") - 1;
     var txt = "Survey " + index + "\r\n";
@@ -163,6 +196,7 @@ function determineNxt() {
     }
 }
 
+// Downloads the text file into the browser
 function download(data, fileName) {
     var file = new Blob([data]);
     if (window.navigator.msSaveOrOpenBlob)
@@ -181,6 +215,7 @@ function download(data, fileName) {
     }
 }
 
+// Concatenates all the saved data into a string and downloads it to a .txt file
 function saveAll(num) {
     var name = localStorage.getItem("name");
     var fileName = name + ".txt";
